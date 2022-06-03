@@ -1216,11 +1216,8 @@ class Map extends Camera {
             }
             this.style.applyProjectionUpdate();
             this._update(true);
-        } else {
-            const usingTerrain = this.getTerrain() || this.style.stylesheet.terrain;
-            if (this.transform.projection.requiresDraping && !usingTerrain) {
-                this.style.setTerrainForDraping();
-            }
+        } else if (this.transform.projection.requiresDraping && !this.getTerrain() && !this.style.stylesheet.terrain) {
+            this.style.setTerrainForDraping();
         }
 
         return this;
